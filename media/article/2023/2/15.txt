@@ -1,0 +1,5 @@
+In this paper we analytically solve the partitioning problem for dense matrix-matrix multiplication, running on a cluster of heterogeneous multicore machines, equipped with a variety of accelerators. Closed-form solutions are provided, that can yield an optimum partitioning in linear time with respect to the number of cores in the system.
+
+We also show that a run-time, online calculation of system parameters for the application of DLT is feasible, allowing the easy deployment of DLT frameworks without a costly a-priori benchmarking procedure.
+
+The paper concludes with an extensive experimental study that shows that our DLT framework coupled with online parameter calculation, can outperform dynamic partitioning while leveraging existing optimized Dense Linear Algebra (DLA) libraries, such as NVidia’s cuBLAS and Intel’s MKL.
