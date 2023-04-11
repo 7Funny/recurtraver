@@ -4,9 +4,8 @@ from sentence_transformers import SentenceTransformer, util
 import datetime
 import os
 from pathlib import Path
-import numpy as np
 
-compare_dict = []
+compare_dict = {}
 
 
 def distrib(compare_dict):
@@ -36,17 +35,19 @@ def compare(report, article):
 
 
 def recur(articlepath, id_report, report):
-    arr = np.array([0])
-    for root, dirs, files in os.walk(articlepath):
+    arr = []
+    for root, dirs, _ in os.walk(articlepath):
         for directory in dirs:
-            for file2 in files:
-                with open(root + '\\' + file2, "r") as f:
+            dir2 = os.path.join(root, directory)
+            for filename in os.listdir(dir2):
+                file_dir = os.path.join(dir2, filename)
+                with open(file_dir, "r") as f:
                     article = f.read()
                 # id_article = get_file_id(file2)
-                np.append(arr, compare(report, article))
-            compare_dict[id_report][directory] = np.max(arr)
-            # Similarity.objects.create(id_author=id_report, id_reviewer=directory,
-            #           similar=compare_dict[id_report][directory])
+            arr.append(compare(report, article))
+            compare_dict[id_report][directory] = max(arr)
+                # Similarity.objects.create(id_author=id_report, id_reviewer=directory,
+                #           similar=compare_dict[id_report][directory])
 
 
 def get_file_id(file):  # временно название доклада/статьи - это их id
@@ -54,7 +55,7 @@ def get_file_id(file):  # временно название доклада/ст�
 
 
 def recurtraver(path, articlepath):
-    for root, dirs, files in os.walk(path):
+    for root, _, files in os.walk(path):
         for file in files:
             with open(root + '\\' + file, "r") as f:
                 report = f.read()
@@ -76,7 +77,7 @@ def distribute():
     # Объединяем полученную строку с недостающими частями пути
     path = Path(os.path.abspath(parent), 'media', 'report', year)
     articlepath = Path(os.path.abspath(parent), 'media', 'article', year)
-    recurtraver(path, articlepath)
+    print(recurtraver(path, articlepath))
 
 
 distribute()
