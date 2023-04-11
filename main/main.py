@@ -4,12 +4,13 @@ from sentence_transformers import SentenceTransformer, util
 import datetime
 import os
 from pathlib import Path
+from pprint import pprint
 
 compare_dict = {}
 
 
 def distrib(compare_dict):
-    threshold = 0.2  # порог
+    threshold = 0.0  # порог
     c_num = 3  # количество рецензентов на оценку доклада
     m_dict = {}  # промежут словарь
     final_dict = {}
@@ -35,16 +36,15 @@ def compare(report, article):
 
 
 def recur(articlepath, id_report, report):
-    arr = []
     for root, dirs, _ in os.walk(articlepath):
         for directory in dirs:
+            arr = []
             dir2 = os.path.join(root, directory)
             for filename in os.listdir(dir2):
                 file_dir = os.path.join(dir2, filename)
                 with open(file_dir, "r") as f:
                     article = f.read()
-                # id_article = get_file_id(file2)
-            arr.append(compare(report, article))
+                arr.append(compare(report, article))
             compare_dict[id_report][directory] = max(arr)
                 # Similarity.objects.create(id_author=id_report, id_reviewer=directory,
                 #           similar=compare_dict[id_report][directory])
@@ -73,11 +73,10 @@ def distribute():
     parent = os.path.join(dir_path, os.pardir)
     today = datetime.datetime.today()
     year = today.strftime("%Y")
-    print(os.path.abspath(parent))
     # Объединяем полученную строку с недостающими частями пути
     path = Path(os.path.abspath(parent), 'media', 'report', year)
     articlepath = Path(os.path.abspath(parent), 'media', 'article', year)
-    print(recurtraver(path, articlepath))
+    pprint(recurtraver(path, articlepath))
 
 
 distribute()
