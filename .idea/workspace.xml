@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d03cad1-04a2-4ecf-844c-abaeaff2c8d3" name="Changes" comment="" />
+    <list default="true" id="5d03cad1-04a2-4ecf-844c-abaeaff2c8d3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,17 +21,22 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2NI03kRtmxE2aNQMMJVwxB4GUMz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "last_opened_file_path": "C:/Users/1392680/PycharmProjects/recurtraver/main/main.py"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/1392680/PycharmProjects/recurtraver"
   }
 }]]></component>
   <component name="RunManager" selected="Python.main/main">
@@ -89,13 +98,24 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/main.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="5" />
+          <line>88</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -106,10 +126,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/main/main.py" line="71">
-        <watch expression="parent" language="Python" />
-      </inline-watch>
-    </watches-manager>
   </component>
 </project>

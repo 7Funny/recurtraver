@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 import numpy as np
 
-compare_dict = []
+compare_dict = {}
 
 
 def distrib(compare_dict):
@@ -21,6 +21,7 @@ def distrib(compare_dict):
         for c_id in m_dict[rep]:  # заполнени словаря, учитывая порог
             if m_dict[rep][c_id] >= threshold:
                 final_dict[rep][c_id] = m_dict[rep][c_id]
+    print(final_dict)
     return final_dict
 
 
@@ -32,21 +33,25 @@ def compare(report, article):
     embedding_1 = model.encode(sentences[0], convert_to_tensor=True)
     embedding_2 = model.encode(sentences[1], convert_to_tensor=True)
 
-    return float(util.pytorch_cos_sim(embedding_1, embedding_2))
+    result = float(util.pytorch_cos_sim(embedding_1, embedding_2))
+    return result
 
 
 def recur(articlepath, id_report, report):
-    arr = np.array([0])
+    arr = []
     for root, dirs, files in os.walk(articlepath):
         for directory in dirs:
-            for file2 in files:
-                with open(root + '\\' + file2, "r") as f:
-                    article = f.read()
-                # id_article = get_file_id(file2)
-                np.append(arr, compare(report, article))
-            compare_dict[id_report][directory] = np.max(arr)
-            # Similarity.objects.create(id_author=id_report, id_reviewer=directory,
-            #           similar=compare_dict[id_report][directory])
+            for root, dirs, files in os.walk(Path(str(articlepath) + "\\" + directory)):
+                for file2 in files:
+                    with open(root + '\\' + file2, "r") as f:
+                        article = f.read()
+                    # id_article = get_file_id(file2)
+                    result = compare(report, article)
+                    arr.append(result)
+                    #np.append(arr, result)
+                compare_dict[id_report][directory] = max(arr)
+                # Similarity.objects.create(id_author=id_report, id_reviewer=directory,
+                #           similar=compare_dict[id_report][directory])
 
 
 def get_file_id(file):  # временно название доклада/статьи - это их id
@@ -77,6 +82,8 @@ def distribute():
     path = Path(os.path.abspath(parent), 'media', 'report', year)
     articlepath = Path(os.path.abspath(parent), 'media', 'article', year)
     recurtraver(path, articlepath)
+
+
 
 
 distribute()
